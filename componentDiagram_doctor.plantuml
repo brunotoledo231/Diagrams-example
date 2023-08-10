@@ -1,0 +1,23 @@
+@startuml
+
+database "DoctorDB"
+
+DoctorDB -- [DoctorRepository]
+
+[DoctorRepository] --(selectAllAppointment
+[DoctorRepository] --(selectAllAppointmentByPatientId
+[DoctorRepository] --(updateHistoryByPatientId
+
+selectAllAppointment -- [DoctorService]
+selectAllAppointmentByPatientId -- [DoctorService] 
+updateHistoryByPatientId -- [DoctorService]
+
+[DoctorService] --(getAllAppointment
+[DoctorService] --(getAllAppointmentByPatientId
+[DoctorService] --(putHistoryByPatientId
+
+getAllAppointment -- [DoctorController]
+getAllAppointmentByPatientId -- [DoctorController]
+putHistoryByPatientId -- [DoctorController]
+
+@enduml

@@ -1,0 +1,102 @@
+@startuml
+class LaboratoryWebApp {
+  - users: User[]  
+}
+class Person{
+    - dniId: String
+    - firstName: String
+    - LastName: String
+    - birthDate: Date
+    - adress: String 
+    - phoneNumber: String
+}
+class User {
+  - userId: String
+  - username: String
+  - password: String
+  - roleId: Role 
+  - personId: Person 
+}
+class Role{
+    - idRole: String
+    - roleName: String
+    - descriptionRole: String
+}
+class Employee{  
+  - userId: User
+}
+class RecepcionistEmployee{
+  - userId: User
+  - patients: [patient]
+  - employees: [employee]
+  - doctors: [doctor]
+  + createUser()
+  + putUser()
+  + deleteUser()
+  + getAllDoctorsBySpecialityName()
+  + getAllEmployees()
+  + getAllPatients()
+  + getAllPatientsByDoctor()
+  + getAllPatientsByDate()
+  + getAllAnalysis()
+  + newAppointment()
+  + deleteAppointmentByPatient()
+  + deleteAllAppointmentByDoctor()
+}
+class Doctor {
+  - dniId: String
+  - userId: String
+  - specialistId: Speciality 
+  - patients: [patient]  
+  + getAllAppointmentByDoctor()
+  + getAllAppointmentByDoctorByPatient()
+  + updateMedicalHistoryByPatient()
+  + updateAnalysis()
+}
+class Speciality{
+    - specialistId: String
+    - specialityName: String
+}
+class Patient {  
+  - userId: User
+  - medicalHistory: String 
+  - appointments: [appointment]
+  - analysis: [analysis]
+  + getAllApointment()
+  + getAllDoctorBySpeciality()
+  + createUser()
+}
+class Appointment {
+  - appointmentId: String
+  - appointmentDate: Date
+  - patientAppointment: Patient
+  - doctorAppointment: Doctor
+  + createAnalysis()
+}
+class Analysis {
+  - analisysId: String
+  - analysisTypeId: AnalysisType
+  - result: String
+  - date: Date
+  - analysisPatient: Patient
+  - analysisDoctor: Doctor  
+}
+class AnalysisType {
+  - analisysTypeId: String
+  - analisysTypeName: String
+}
+LaboratoryWebApp "1" -- "1..*" User:tiene 1 o mas 
+User --|> Person: es una
+User "1" -- "1" Role: tiene
+Role "1" -- "*" User: puede estar en 
+Doctor --|> User: es un
+Doctor "1" -- "1" Speciality : tiene
+Speciality "1" -- "*" Doctor : puede estar en
+Employee --|> User: es un
+Patient --|> User: es un 
+Patient "1" --"1..*" Appointment : tiene varios
+RecepcionistEmployee --|> User: es un
+Analysis "1" -- "1" AnalysisType : tiene
+AnalysisType "1" -- "*" Analysis : puede estar en 
+
+@enduml

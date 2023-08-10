@@ -1,0 +1,55 @@
+@startuml
+
+database "ReceptionistDB"
+
+ReceptionistDB -- [ReceptionistRepository]
+
+[ReceptionistRepository] --(createUser
+[ReceptionistRepository] --(updateUser
+[ReceptionistRepository] --(deleteUser
+[ReceptionistRepository] --(selectAllDoctorBySpecialtyName
+[ReceptionistRepository] --(selectAllEmployees
+[ReceptionistRepository] --(selectAllPatients
+[ReceptionistRepository] --(selectAllPatientsByDoctorId
+[ReceptionistRepository] --(selectAllAppointmentByDate
+[ReceptionistRepository] --(selectAllAnalysis
+[ReceptionistRepository] --(createAppointment
+[ReceptionistRepository] --(deleteAppointment
+
+createUser -- [ReceptionistService]
+updateUser -- [ReceptionistService] 
+deleteUser -- [ReceptionistService]
+selectAllDoctorBySpecialtyName -- [ReceptionistService]
+selectAllEmployees -- [ReceptionistService]
+selectAllPatients -- [ReceptionistService]
+selectAllPatientsByDoctorId -- [ReceptionistService]
+selectAllAppointmentByDate -- [ReceptionistService]
+selectAllAnalysis -- [ReceptionistService]
+createAppointment -- [ReceptionistService]
+deleteAppointment -- [ReceptionistService]
+
+[ReceptionistService] --(postUser
+[ReceptionistService] --(putUser
+[ReceptionistService] --(deleteUser
+[ReceptionistService] --(getAllDoctorBySpecialtyName
+[ReceptionistService] --(getAllEmployees
+[ReceptionistService] --(getAllPatients
+[ReceptionistService] --(getAllPatientsByDoctorId
+[ReceptionistService] --(getAllAppointmentById
+[ReceptionistService] --(getAllAnalisys
+[ReceptionistService] --(postAppointment
+[ReceptionistService] --(deleteAppointment
+
+postUser -- [ReceptionistController]
+putUser -- [ReceptionistController]
+deleteUser -- [ReceptionistController]
+getAllDoctorBySpecialtyName -- [ReceptionistController]
+getAllEmployees -- [ReceptionistController]
+getAllPatients -- [ReceptionistController]
+getAllPatientsByDoctorId -- [ReceptionistController]
+getAllAppointmentById -- [ReceptionistController]
+getAllAnalisys -- [ReceptionistController]
+postAppointment -- [ReceptionistController]
+deleteAppointment -- [ReceptionistController]
+
+@enduml

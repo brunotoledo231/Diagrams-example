@@ -1,0 +1,27 @@
+@startuml
+
+database "PatientDB" 
+
+[PatientRepository] -- PatientDB
+
+createAppointment -- [PatientRepository]
+selectAnalysisById -- [PatientRepository]
+selectAllDoctorBySpecialtyName -- [PatientRepository]
+createUser -- [PatientRepository]
+
+[PatientService] --(createAppointment
+[PatientService] --(selectAnalysisById
+[PatientService] --(selectAllDoctorBySpecialtyName
+[PatientService] --(createUser
+
+postAppointment -- [PatientService]
+getAnalysisById -- [PatientService]
+getAllDoctorBySpecialtyName -- [PatientService]
+postUser -- [PatientService]
+
+[PatientController] --(postAppointment
+[PatientController] --(getAnalysisById
+[PatientController] --(getAllDoctorBySpecialtyName
+[PatientController] --(postUser
+
+@enduml
